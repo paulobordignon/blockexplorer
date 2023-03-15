@@ -1,22 +1,12 @@
-import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
+import { Alchemy, Network } from 'alchemy-sdk';
+import { Box, Container, Text } from '@chakra-ui/react'
 
-import './App.css';
-
-// Refer to the README doc for more information about using API
-// keys in client-side code. You should never do this in production
-// level code.
 const settings = {
   apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
   network: Network.ETH_MAINNET,
 };
 
-
-// In this week's lessons we used ethers.js. Here we are using the
-// Alchemy SDK is an umbrella library with several different packages.
-//
-// You can read more about the packages here:
-//   https://docs.alchemy.com/reference/alchemy-sdk-api-surface-overview#api-surface
 const alchemy = new Alchemy(settings);
 
 function App() {
@@ -30,7 +20,31 @@ function App() {
     getBlockNumber();
   });
 
-  return <div className="App">Block Number: {blockNumber}</div>;
+  return (
+    <Container p={0} maxW='100vw' h='100vh' bg='blackAlpha.900'>
+      <Box p={4} bg='blackAlpha.400'>
+        <Text
+          bgGradient='linear(to-l, #CED8FE, #3861FB)'
+          bgClip='text'
+          fontSize='xl'
+          fontWeight='extrabold'
+        >
+          ETHEXPLORER
+        </Text>
+      </Box>
+      <Container px='10vh' py='5vh' maxW='100vw'>
+        <Box p={4} borderWidth='1px' borderRadius='lg' borderColor='gray.600'>
+          <Text
+            color='#CED8FE'
+            fontSize='xm'
+            align='center'
+          >
+            Latest Block: {blockNumber}
+          </Text>
+        </Box>
+      </Container>
+    </Container>
+  );
 }
 
 export default App;
